@@ -8,7 +8,7 @@ import (
 
 	"user/cmd/rpc/internal/logic"
 	"user/cmd/rpc/internal/svc"
-	"user/cmd/rpc/types/user"
+	"greet-pb/user/types/user"
 )
 
 type UserServer struct {

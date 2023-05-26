@@ -5,7 +5,7 @@ import (
 	"user/cmd/dao/query"
 
 	"user/cmd/rpc/internal/svc"
-	"user/cmd/rpc/types/user"
+	"greet-pb/user/types/user"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

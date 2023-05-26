@@ -1,0 +1,40 @@
+syntax = "v1"
+
+info(
+	title: "用户实例"
+	desc: "用户实例"
+	author: ""
+	email: ""
+)
+
+import (
+	"user/user.api"
+)
+
+@server(
+	prefix: user
+	group: user
+)
+
+service user-api {
+
+	@doc "注册用户"
+	@handler register
+	post /register (RegisterReq) returns (RegisterResp)
+
+	@doc "登录用户"
+	@handler login
+	post /login (LoginReq) returns (LoginResp)
+}
+
+@server(
+	prefix: user
+	group: user
+	jwt: Jwt
+)
+service user-api {
+
+	@doc "获取用户"
+	@handler getUser
+	get /users/:id (UserInfoReq) returns (UserInfoResp)
+}

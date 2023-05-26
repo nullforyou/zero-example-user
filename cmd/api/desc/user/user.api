@@ -1,0 +1,41 @@
+type (
+    User {
+        Id       int64  `json:"id"`
+        Mobile   string `json:"mobile"`
+        Nickname string `json:"nickname"`
+    }
+
+    RegisterReq {
+        Mobile   string `json:"mobile" validate:"required,len=11,mobile"`
+        Password string `json:"password" validate:"min=6,max=20"`
+    }
+
+    RegisterResp {
+        Id           int64  `json:"id"`
+        Mobile       string `json:"mobile"`
+        Nickname     string `json:"nickname"`
+        AccessToken  string `json:"access_token"`
+        AccessExpire int64  `json:"access_expire"`
+    }
+
+    LoginReq {
+        Mobile   string `json:"mobile" validate:"required,len=11,mobile"`
+        Password string `json:"password" validate:"min=6,max=20"`
+    }
+
+    LoginResp {
+        Id           int64  `json:"id"`
+        Mobile       string `json:"mobile"`
+        Nickname     string `json:"nickname"`
+        AccessToken  string `json:"access_token"`
+        AccessExpire int64  `json:"access_expire"`
+    }
+
+    UserInfoReq {
+        Id int64 `path:"id"`
+    }
+
+    UserInfoResp {
+        UserInfo User `json:"userInfo"`
+    }
+)
