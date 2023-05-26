@@ -1,9 +1,9 @@
 package main
 
 import (
-	"go-zero-example/cmd/database"
 	"gorm.io/plugin/soft_delete"
 	"time"
+	"user/cmd/database"
 )
 
 type GreetMember struct {

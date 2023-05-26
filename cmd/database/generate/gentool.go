@@ -95,13 +95,7 @@ func main() {
 
 
 	g.ApplyBasic(
-		g.GenerateModel("greet_address", fieldOpts...),
-		g.GenerateModel("greet_category", fieldOpts...),
-		g.GenerateModel("greet_goods", fieldOpts...),
-		g.GenerateModel("greet_order", fieldOpts...),
-		g.GenerateModel("greet_order_detail", fieldOpts...),
-		g.GenerateModel("greet_order_goods", fieldOpts...),
-		g.GenerateModel("greet_order_payment", fieldOpts...),
+		g.GenerateModel("greet_member", fieldOpts...),
 	)
 
 
