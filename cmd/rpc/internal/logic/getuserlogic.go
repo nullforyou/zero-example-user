@@ -4,8 +4,8 @@ import (
 	"context"
 	"user/cmd/dao/query"
 
-	"user/cmd/rpc/internal/svc"
 	"greet-pb/user/types/user"
+	"user/cmd/rpc/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

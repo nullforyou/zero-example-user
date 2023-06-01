@@ -1,11 +1,11 @@
 package svc
 
 import (
-	"user/cmd/rpc/internal/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
+	"user/cmd/rpc/internal/config"
 )
 
 type ServiceContext struct {

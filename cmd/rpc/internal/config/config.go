@@ -1,7 +1,6 @@
 package config
 
 import (
-	"github.com/zeromicro/go-zero/core/stores/cache"
 	"github.com/zeromicro/go-zero/zrpc"
 )
 
@@ -11,5 +10,4 @@ type Config struct {
 		DataSource string
 		TablePrefix string
 	}
-	CacheRedis cache.CacheConf
 }

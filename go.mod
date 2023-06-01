@@ -108,6 +108,7 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 	go-common v0.0.1
 	greet-pb v0.0.1
+	go-zero-base v0.0.1
 )
 
 replace (

@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/zeromicro/go-zero/core/logx"
-	"go-common/custom_string"
+	"go-common/tool"
 	"go-common/utils/xerr"
 	"gorm.io/gorm"
 	"user/cmd/api/internal/svc"
@@ -35,11 +35,11 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 		return nil, xerr.NewBusinessError(xerr.SetCode("MemberNotExistsError"))
 	}
 
-	if memberModel.Password != custom_string.CalcMD5(req.Password) {
+	if memberModel.Password != tool.CalcMD5(req.Password) {
 		return nil, xerr.NewBusinessError(xerr.SetCode("LoginError"), xerr.SetMsg("账号或密码错误"))
 	}
 
-	jwtToken, err := custom_string.GetJwtToken(l.svcCtx.Config.Jwt.AccessSecret, l.svcCtx.Config.Jwt.AccessExpire, memberModel.ID)
+	jwtToken, err := tool.GetJwtToken(l.svcCtx.Config.Jwt.AccessSecret, l.svcCtx.Config.Jwt.AccessExpire, memberModel.ID)
 	if err != nil {
 		return nil, xerr.NewBusinessError(xerr.SetCode("GenerateJWTError"), xerr.SetMsg("生成JWT错误"))
 	}
