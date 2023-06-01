@@ -3,8 +3,8 @@ package user
 import (
 	"context"
 	"github.com/zeromicro/go-zero/core/logx"
-	"go-common/custom_string"
-	"go-common/utils/xerr"
+	"go-common/tool"
+	"go-zero-base/utils/xerr"
 	"user/cmd/api/internal/svc"
 	"user/cmd/api/internal/types"
 	"user/cmd/dao/model"
@@ -28,18 +28,18 @@ func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.RegisterRe
 	var count int64
 	l.svcCtx.DbEngine.Model(model.Member{}).Where("mobile = ?", req.Mobile).Count(&count)
 	if count > 0 {
-		return nil, xerr.NewBusinessError(xerr.SetCode("MobileExistsError"), xerr.SetMsg("手机号已存在"))
+		return nil, xerr.NewBusinessError(xerr.SetCode(xerr.ErrorBusiness), xerr.SetMsg("手机号已存在"))
 	}
 
 	member := model.Member{}
 	member.Mobile = req.Mobile
 	member.Nickname = req.Mobile
-	member.Password = custom_string.CalcMD5(req.Password)
+	member.Password = tool.CalcMD5(req.Password)
 	l.svcCtx.DbEngine.Create(&member)
 
-	jwtToken, err := custom_string.GetJwtToken(l.svcCtx.Config.Jwt.AccessSecret, l.svcCtx.Config.Jwt.AccessExpire, member.ID)
+	jwtToken, err := tool.GetJwtToken(l.svcCtx.Config.Jwt.AccessSecret, l.svcCtx.Config.Jwt.AccessExpire, member.ID)
 	if err != nil {
-		return nil, xerr.NewBusinessError(xerr.SetCode("GenerateJWTError"), xerr.SetMsg("生成JWT错误"))
+		return nil, xerr.NewBusinessError(xerr.SetCode(xerr.ErrorTokenGenerate), xerr.SetMsg("生成JWT错误"))
 	}
 	return &types.RegisterResp{
 		Id: member.ID,

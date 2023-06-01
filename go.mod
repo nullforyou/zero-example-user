@@ -3,18 +3,22 @@ module user
 go 1.19
 
 require (
-	github.com/go-playground/locales v0.14.1
-	github.com/go-playground/universal-translator v0.18.1
-	github.com/go-playground/validator/v10 v10.14.0
-	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/zeromicro/go-zero v1.5.2
 	google.golang.org/grpc v1.55.0
-	google.golang.org/protobuf v1.30.0
 	gorm.io/driver/mysql v1.5.1
 	gorm.io/gen v0.3.21
 	gorm.io/gorm v1.25.1
 	gorm.io/plugin/dbresolver v1.4.1
 	gorm.io/plugin/soft_delete v1.2.1
+)
+
+require (
+	github.com/go-playground/locales v0.14.1 // indirect
+	github.com/go-playground/universal-translator v0.18.1 // indirect
+	github.com/go-playground/validator/v10 v10.14.0 // indirect
+	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+	google.golang.org/protobuf v1.30.0 // indirect
 )
 
 require (
@@ -107,11 +111,12 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.3 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
 	go-common v0.0.1
-	greet-pb v0.0.1
 	go-zero-base v0.0.1
+	greet-pb v0.0.1
 )
 
 replace (
-	go-common => D:\go\work\go-modules\go-common
-	greet-pb => D:\go\work\go-modules\greet-pb
+	go-common => D:\go\work\go-zero-example\zero-example-common
+	go-zero-base => D:\go\work\go-zero-example\zero-example-base
+	greet-pb => D:\go\work\go-zero-example\zero-example-pb
 )

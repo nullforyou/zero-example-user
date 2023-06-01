@@ -5,7 +5,7 @@ import (
 	"errors"
 	"github.com/zeromicro/go-zero/core/logx"
 	"go-common/tool"
-	"go-common/utils/xerr"
+	"go-zero-base/utils/xerr"
 	"gorm.io/gorm"
 	"user/cmd/api/internal/svc"
 	"user/cmd/api/internal/types"
@@ -32,16 +32,16 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 	memberDao := query.Member
 	memberModel, err := memberDao.WithContext(ctx).Where(memberDao.Mobile.Eq(req.Mobile)).First()
 	if err != nil && errors.Is(err, gorm.ErrRecordNotFound){
-		return nil, xerr.NewBusinessError(xerr.SetCode("MemberNotExistsError"))
+		return nil, xerr.NewBusinessError(xerr.SetCode(xerr.ErrorBusiness), xerr.SetMsg("用户不存在"))
 	}
 
 	if memberModel.Password != tool.CalcMD5(req.Password) {
-		return nil, xerr.NewBusinessError(xerr.SetCode("LoginError"), xerr.SetMsg("账号或密码错误"))
+		return nil, xerr.NewBusinessError(xerr.SetCode(xerr.ErrorBusiness), xerr.SetMsg("账号或密码错误"))
 	}
 
 	jwtToken, err := tool.GetJwtToken(l.svcCtx.Config.Jwt.AccessSecret, l.svcCtx.Config.Jwt.AccessExpire, memberModel.ID)
 	if err != nil {
-		return nil, xerr.NewBusinessError(xerr.SetCode("GenerateJWTError"), xerr.SetMsg("生成JWT错误"))
+		return nil, xerr.NewBusinessError(xerr.SetCode(xerr.ErrorTokenGenerate))
 	}
 	return &types.LoginResp{
 		Id: memberModel.ID,
