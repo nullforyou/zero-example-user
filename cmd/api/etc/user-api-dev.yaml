@@ -1,7 +1,7 @@
 Name: user-api
 Host: 0.0.0.0
 Port: 8001
-Mode: dev
+Mode: pro
 Log:
   ServiceName: user-api
   Mode: console
