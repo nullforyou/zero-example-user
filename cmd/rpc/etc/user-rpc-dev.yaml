@@ -8,6 +8,8 @@ Etcd:
 Mysql:
   DataSource: root:jiangxiong@(127.0.0.1:3306)/greet?charset=utf8mb4&parseTime=True
   TablePrefix: greet
+
+#链路追踪
 Telemetry:
   Name: usercenter-rpc
   Endpoint: http://127.0.0.1:14268/api/traces
