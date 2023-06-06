@@ -1,7 +1,7 @@
 Name: user-api
 Host: 0.0.0.0
-Port: 8001
-Mode: pro
+Port: 8021
+Mode: dev
 Log:
   ServiceName: user-api
   Mode: console
@@ -21,3 +21,9 @@ Telemetry:
   Endpoint: http://127.0.0.1:14268/api/traces
   Sampler: 1.0
   Batcher: jaeger
+
+#监控
+Prometheus:
+  Host: 0.0.0.0
+  Port: 4021
+  Path: /metrics
